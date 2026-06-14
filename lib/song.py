@@ -2,8 +2,8 @@ class Song:
     count = 0
     genres = []
     artists = []
-    genre_count = 0
-    artist_count = 0
+    genre_count = {}
+    artist_count = {}
 
     def __init__(self, name, artist, genre):
         self.name = name
@@ -14,8 +14,8 @@ class Song:
         Song.add_to_artist(self.artist)
         Song.add_to_genres(self.genre)
 
-        Song.add_to_artist_count()
-        Song.add_to_genre_count()
+        Song.add_to_artist_count(self.artist)
+        Song.add_to_genre_count(self.genre)
 
     def __str__(self):
         return f"Title: {self.name} , Artist: {self.artist}, Genre: {self.genre}"
@@ -35,12 +35,18 @@ class Song:
             cls.artists.append(artist)
 
     @classmethod
-    def add_to_genre_count(cls):
-        cls.genre_count = len(cls.genres) 
+    def add_to_genre_count(cls, genre):
+        if genre and genre in cls.genre_count:
+            cls.genre_count[genre] += 1
+        else: 
+            cls.genre_count[genre] = 1
 
     @classmethod
-    def add_to_artist_count(cls):
-        cls.artist_count = len(cls.artists)    
+    def add_to_artist_count(cls, artist):
+        if artist and artist in cls.artist_count:
+            cls.artist_count[artist] += 1
+        else:
+            cls.artist_count[artist] = 1
 
 track1 = Song("Houdini", "Eminem", "Hip-Hop")
 track2 = Song("Not Like Us", "Kendrick Lamar", "Hip-Hop")
