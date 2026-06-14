@@ -11,11 +11,11 @@ class Song:
         self.genre = genre
 
         Song.add_song_to_count()
-        Song.add_to_artist(self.artist)
-        Song.add_to_genres(self.genre)
+        Song.add_to_artist(artist)
+        Song.add_to_genres(genre)
 
-        Song.add_to_artist_count(self.artist)
-        Song.add_to_genre_count(self.genre)
+        Song.add_to_artist_count()
+        Song.add_to_genre_count()
 
     def __str__(self):
         return f"Title: {self.name} , Artist: {self.artist}, Genre: {self.genre}"
@@ -25,28 +25,38 @@ class Song:
         cls.count += 1
 
     @classmethod
-    def add_to_genres(cls, genre):
-        if genre and genre not in cls.genres:
-            cls.genres.append(genre)
+    def add_to_genres(cls, genre=None):
+        # if genre and genre not in cls.genres:
+        #     cls.genres.append(genre)
+        pass
 
     @classmethod
-    def add_to_artist(cls, artist):
-        if artist and artist not in cls.artists:
-            cls.artists.append(artist)
+    def add_to_artist(cls, artist=None):
+        # if artist and artist not in cls.artists:
+        #     cls.artists.append(artist)
+        pass
 
     @classmethod
-    def add_to_genre_count(cls, genre):
-        if genre and genre in cls.genre_count:
-            cls.genre_count[genre] += 1
-        else: 
-            cls.genre_count[genre] = 1
+    def add_to_genre_count(cls):
+        # if genre and genre in cls.genre_count:
+        #     cls.genre_count[genre] += 1
+        # else: 
+        #     cls.genre_count[genre] = 1
+        cls.genre_count = {}
+        for genre in cls.genres:
+            if genre:
+                cls.genre_count[genre] = cls.genre_count.get(genre, 0) + 1
 
     @classmethod
-    def add_to_artist_count(cls, artist):
-        if artist and artist in cls.artist_count:
-            cls.artist_count[artist] += 1
-        else:
-            cls.artist_count[artist] = 1
+    def add_to_artist_count(cls):
+        # if artist and artist in cls.artist_count:
+        #     cls.artist_count[artist] += 1
+        # else:
+        #     cls.artist_count[artist] = 1
+        cls.artist_count = {}
+        for artist in cls.artists:
+            if artist:
+                cls.artist_count[artist] = cls.artist_count.get(artist, 0) + 1
 
 track1 = Song("Houdini", "Eminem", "Hip-Hop")
 track2 = Song("Not Like Us", "Kendrick Lamar", "Hip-Hop")
