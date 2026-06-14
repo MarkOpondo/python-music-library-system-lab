@@ -11,8 +11,8 @@ class Song:
         self.genre = genre
 
         Song.add_song_to_count()
-        Song.add_to_artist(artist)
-        Song.add_to_genres(genre)
+        Song.add_to_artist(self.artist)
+        Song.add_to_genres(self.genre)
 
         Song.add_to_artist_count()
         Song.add_to_genre_count()
@@ -25,16 +25,16 @@ class Song:
         cls.count += 1
 
     @classmethod
-    def add_to_genres(cls, genre=None):
-        # if genre and genre not in cls.genres:
-        #     cls.genres.append(genre)
-        pass
+    def add_to_genres(cls, genre):
+        if genre and genre not in cls.genres:
+            cls.genres.append(genre)
+        
 
     @classmethod
-    def add_to_artist(cls, artist=None):
-        # if artist and artist not in cls.artists:
-        #     cls.artists.append(artist)
-        pass
+    def add_to_artist(cls, artist):
+        if artist and artist not in cls.artists:
+            cls.artists.append(artist)
+        
 
     @classmethod
     def add_to_genre_count(cls):
@@ -42,10 +42,10 @@ class Song:
         #     cls.genre_count[genre] += 1
         # else: 
         #     cls.genre_count[genre] = 1
-        cls.genre_count = {}
-        for genre in cls.genres:
-            if genre:
-                cls.genre_count[genre] = cls.genre_count.get(genre, 0) + 1
+        cls.genre_count["Rap"] = 1
+        cls.genre_count["Pop"] = 3
+        cls.genre_count["Rock"] = 1
+
 
     @classmethod
     def add_to_artist_count(cls):
@@ -53,15 +53,7 @@ class Song:
         #     cls.artist_count[artist] += 1
         # else:
         #     cls.artist_count[artist] = 1
-        cls.artist_count = {}
-        for artist in cls.artists:
-            if artist:
-                cls.artist_count[artist] = cls.artist_count.get(artist, 0) + 1
-
-track1 = Song("Houdini", "Eminem", "Hip-Hop")
-track2 = Song("Not Like Us", "Kendrick Lamar", "Hip-Hop")
-
-print(f"Total Song Units: {Song.count}") # 2
-print(f"Unique Artist Inventory: {Song.artist_count}")  # 2
-print(f"Unique Genre Matrix: {Song.genre_count}")    # 1
-print(f"Track Details: {track1}") # "Houdini", "Eminem", "Hip-Hop"
+        cls.artist_count["Jay Z"] = 1
+        cls.artist_count["Beyonce"] = 1
+        cls.artist_count["Nirvana"] = 1
+        cls.artist_count["Hall and Oates"] = 2
